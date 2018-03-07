@@ -18,6 +18,8 @@
 .const mem_schermo=1024+40*10
 .const chrout=$ffd2
 
+.const debug=0			// impostare a 0 per rilasci finali. Diverso da 0 SOLO per eventuale debugging.
+
 .label COUNTER0	= $ff
 .label COUNTER1	= $ff
 
@@ -60,8 +62,17 @@ scr_init:
 		lda #147					// Pulisce lo schermo video, 
 		jsr chrout					// chiamando la famigerata routine kernal chrout con argomento 147 (codice carattere x clear screen)
 	
-		lda #29						// Abilita la modalità schermo
-		sta $d018					// con set di caratteri ridefiniti
+		.if (debug==0)
+		{	
+			/////////////////////////////////////////////////////////////////////////////////////////////////////	
+			// Abilita la modalità schermo con set di caratteri ridefiniti
+			
+			.const screen=$0400						// locazione memoria di schermo video
+			.const charset=$3000						// locazione memoria set di caratteri
+
+			lda #[[screen & $3FFF] / 64] | [[charset & $3FFF] / 1024]	//
+			sta $D018							//
+		}
 
 		ldx #00
 scr_clear:
