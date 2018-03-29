@@ -25,10 +25,17 @@
 
 * = $0801                       // BASIC start address (#2049)
 BasicUpstart(codice)
+	//
+	// .byte $0b,$08,$0a,$00,$9e,$34,$30,$39,$36,$00
+	//
+	// Codice corrispondente alla linea BASIC: 10 SYS4096 
+	// per i compilatori che non creano automaticamente la linea per il lancio
+	// del programma da BASIC.
+	//
 
 .pc=$1000 "codice"
 codice:
-
+{
 	jsr scr_init		// imposta schermo, riproducendo il testo "RetroMagazine" tra due barre orizzontali piene
 	
 main:
@@ -52,6 +59,7 @@ no_barra0:
 no_barra1:
 
 	jmp main
+}
 
 scr_init:
 {
@@ -75,7 +83,7 @@ scr_init:
 		}
 
 		ldx #00
-scr_clear:
+s0:
 		lda #$71					// Riempie la memoria video con il valore $71 (#143) e $72 (#144)
 		sta $0400,x					// che corrisponde al carattere 'muro'...
 		sta $0500,x					//
@@ -90,7 +98,8 @@ scr_clear:
 		sta $dae8,x					//
 
 		inx						// Incrementa x
-		bne scr_clear					// torna su...
+		bne s0						// torna su...
+
 
 		ldx #39
 		lda #$03
@@ -149,12 +158,13 @@ idle1:	dey			//per minimizzare il "tremolio"
 //------------------------------------------------------------------
 // Ciclo per stampare la barra raster '0'
 //------------------------------------------------------------------
-	ldx #00		
+	ldx #00
+
 loop:	lda colorBar0		//Assegna colore al bordo schermo
    	sta $d020		//ed all'interno schermo
 	sta $d021
 
-	ldy #$08		//Tempo di attesa per minimizzare
+	ldy #08			//Tempo di attesa 
 idle2:	dey			//per minimizzare
 	bne idle2		//il tremolio alla fine dell'effetto
 				//e rendere la barra più spessa...
@@ -167,7 +177,7 @@ idle2:	dey			//per minimizzare
 // Fine del ciclo 
 //------------------------------------------------------------------
 
-    	lda #$00		// Assegna il colore #00 (NERO)
+    	lda #00			// Assegna il colore #00 (NERO)
     	sta $d020		// al bordo
 	sta $d021		// ed allo schermo video
 
@@ -186,12 +196,13 @@ idle1:	dey			//per minimizzare il "tremolio"
 //------------------------------------------------------------------
 // Ciclo per stampare la barra raster '1'
 //------------------------------------------------------------------
-	ldx #00		
+	ldx #00
+
 loop:	lda colorBar1		//Assegna colore al bordo schermo
    	sta $d020		//ed all'interno schermo
 	sta $d021
 
-	ldy #$08		//Tempo di attesa per minimizzare
+	ldy #08			//Tempo di attesa 
 idle2:	dey			//per minimizzare
 	bne idle2		//il tremolio alla fine dell'effetto
 				//e rendere la barra più spessa...
@@ -205,7 +216,7 @@ idle2:	dey			//per minimizzare
 // Fine del ciclo
 //------------------------------------------------------------------
 
-    	lda #$00		// Assegna il colore #00 (NERO)
+    	lda #00			// Assegna il colore #00 (NERO)
     	sta $d020		// al bordo
 	sta $d021		// ed allo schermo video
 

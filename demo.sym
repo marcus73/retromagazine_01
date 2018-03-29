@@ -1,28 +1,29 @@
-.label fai_barra1=$10d1 {
-  .label loop=$10d8
-  .label idle2=$10e3
-  .label idle1=$10d3
+.label fai_barra1=$10d2 {
+  .label loop=$10d9
+  .label idle2=$10e4
+  .label idle1=$10d4
 }
-.label codice=$1000
+.label codice=$1000 {
+  .label main=$1003
+  .label no_barra1=$1021
+  .label no_barra0=$1012
+}
 .label scr_init=$1024 {
-  .label s3=$10a2
-  .label scr_clear=$1038
-  .label ancora=$1093
-  .label s1=$105d
-  .label s2=$1088
+  .label s3=$10a3
+  .label ancora=$1094
+  .label s0=$1038
+  .label s1=$105e
+  .label s2=$1089
 }
 .label map_data=$3398
-.label main=$1003
-.label colorBar0=$10f6
-.label colorBar1=$10f7
+.label colorBar0=$10f7
+.label colorBar1=$10f8
 .label COUNTER1=$ff
-.label no_barra1=$1021
-.label sinusTable1=$11f8
+.label sinusTable1=$11f9
 .label COUNTER0=$ff
-.label no_barra0=$1012
-.label sinusTable0=$10f8
-.label fai_barra0=$10ac {
-  .label loop=$10b3
-  .label idle2=$10be
-  .label idle1=$10ae
+.label sinusTable0=$10f9
+.label fai_barra0=$10ad {
+  .label loop=$10b4
+  .label idle2=$10bf
+  .label idle1=$10af
 }
