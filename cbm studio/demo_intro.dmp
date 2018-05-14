@@ -1,0 +1,44 @@
+
+******* 23 Label(s) *******
+ancora = $1093 
+codice = $1000 
+colorBar0 = $3000 
+colorBar1 = $3001 
+fai_barra0 = $10AC 
+fai_barra1 = $10D1 
+idle02 = $10BE 
+idle1 = $10AE 
+idle1r0 = $10D3 
+idle2r1 = $10E3 
+loop0 = $10B3 
+loop1 = $10D8 
+main = $1003 
+map_data = $2398 
+no_barra0 = $1012 
+no_barra1 = $1021 
+s0 = $1038 
+s1 = $105D 
+s2 = $1088 
+s3 = $10A2 
+scr_init = $1024 
+sinusTable0 = $3002 
+sinusTable1 = $3102 
+
+******* 1 Unused label(s) *******
+codice
+
+******* 7 Variable(s) *******
+CHARSET  = $3000
+CHROUT  = $FFD2
+COUNTER0  = $00FF
+COUNTER1  = $00FF
+MEM_SCHERMO  = $0590
+SCREEN  = $0400
+tgt_c64  = $0001
+******* 5 Unused variables(s) *******
+CHARSET
+CHROUT
+MEM_SCHERMO
+SCREEN
+tgt_c64
+
